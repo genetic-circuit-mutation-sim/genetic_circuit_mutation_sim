@@ -1,0 +1,123 @@
+{
+  "total_variants": 1000,
+  "pct_bistable": 14.2,
+  "pct_failed": 85.8,
+  "failure_distribution": {
+    "leaky": 858,
+    "bistable": 142
+  },
+  "failure_percentages": {
+    "leaky": 85.8,
+    "bistable": 14.2
+  },
+  "region_vulnerability": {
+    "cds_A": {
+      "failure_rate": 1.0,
+      "total_mutations": 226,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 226
+      }
+    },
+    "rbs_A": {
+      "failure_rate": 1.0,
+      "total_mutations": 82,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 82
+      }
+    },
+    "cds_B": {
+      "failure_rate": 1.0,
+      "total_mutations": 179,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 179
+      }
+    },
+    "rbs_B": {
+      "failure_rate": 1.0,
+      "total_mutations": 79,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 79
+      }
+    },
+    "operator_A": {
+      "failure_rate": 0.09523809523809523,
+      "total_mutations": 84,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "bistable": 76,
+        "leaky": 8
+      }
+    },
+    "operator_B": {
+      "failure_rate": 0.1428571428571429,
+      "total_mutations": 77,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "bistable": 66,
+        "leaky": 11
+      }
+    },
+    "promoter_B": {
+      "failure_rate": 1.0,
+      "total_mutations": 135,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 135
+      }
+    },
+    "promoter_A": {
+      "failure_rate": 1.0,
+      "total_mutations": 138,
+      "dominant_failure_mode": "leaky",
+      "failure_breakdown": {
+        "leaky": 138
+      }
+    }
+  },
+  "mutation_type_effects": {
+    "substitution": {
+      "failure_rate": 0.8442714126807565,
+      "total_mutations": 899,
+      "failure_breakdown": {
+        "leaky": 759,
+        "bistable": 140
+      }
+    },
+    "insertion": {
+      "failure_rate": 0.9583333333333334,
+      "total_mutations": 48,
+      "failure_breakdown": {
+        "leaky": 46,
+        "bistable": 2
+      }
+    },
+    "deletion": {
+      "failure_rate": 1.0,
+      "total_mutations": 53,
+      "failure_breakdown": {
+        "leaky": 53
+      }
+    }
+  },
+  "robustness_score": 0.142,
+  "summary_stats": {
+    "mean_mutations_per_variant": 1.0,
+    "std_mutations_per_variant": 0.0,
+    "param_tx_A_bistable_mean": 1.0,
+    "param_tx_A_failed_mean": 1.0266472913019238,
+    "param_tx_B_bistable_mean": 1.0,
+    "param_tx_B_failed_mean": 0.8591157688931074,
+    "param_tl_A_bistable_mean": 1.0,
+    "param_tl_A_failed_mean": 0.9955671856466284,
+    "param_tl_B_bistable_mean": 1.0,
+    "param_tl_B_failed_mean": 0.8146053143593233,
+    "param_Kd_bistable_mean": 1.999836694104732,
+    "param_Kd_failed_mean": 10.363278394288017,
+    "param_n_bistable_mean": 2.0012190784294717,
+    "param_n_failed_mean": 1.9819375018309051
+  }
+}

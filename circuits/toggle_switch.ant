@@ -1,0 +1,79 @@
+// Toggle Switch Genetic Circuit Model
+// Antimony language specification
+// 
+// This model represents a bistable genetic toggle switch with two mutually
+// repressing genes A and B. Each gene produces a repressor protein that
+// inhibits transcription of the other gene.
+//
+// Parameters are exposed for mutation studies:
+//   - tx_A, tx_B: transcription rates
+//   - tl_A, tl_B: translation rates  
+//   - Kd: dissociation constant for repressor binding
+//   - n: Hill coefficient for cooperative binding
+//   - deg_mRNA, deg_protein: degradation rates
+
+model toggle_switch()
+
+    // ========================================================================
+    // SPECIES DEFINITIONS
+    // ========================================================================
+    // mRNA species
+    species mRNA_A = 0;   // mRNA for gene A
+    species mRNA_B = 0;   // mRNA for gene B
+    
+    // Protein species (repressors)
+    species A = 0;        // Protein A (represses B)
+    species B = 0;        // Protein B (represses A)
+
+    // ========================================================================
+    // PARAMETER DEFINITIONS
+    // Biologically plausible ranges enforced by simulation wrapper:
+    //   tx, tl: [1e-4, 1e2]
+    //   Kd: [1e-3, 1e3]
+    //   n: [1, 6]
+    // ========================================================================
+    
+    // Transcription rates (AU/time)
+    tx_A = 1.0;           // Basal transcription rate of gene A
+    tx_B = 1.0;           // Basal transcription rate of gene B
+    
+    // Translation rates (AU/time)
+    tl_A = 1.0;           // Translation rate of mRNA_A to protein A
+    tl_B = 1.0;           // Translation rate of mRNA_B to protein B
+    
+    // Repression parameters
+    Kd = 1.0;             // Dissociation constant for repressor binding
+    n = 2.0;              // Hill coefficient (cooperativity)
+    
+    // Degradation rates (1/time)
+    deg_mRNA = 0.1;       // mRNA degradation rate (both species)
+    deg_protein = 0.01;   // Protein degradation rate (both species)
+    
+    // Leakiness parameter (basal expression when fully repressed)
+    leakiness = 0.01;     // Minimal expression level
+
+    // ========================================================================
+    // REACTION DEFINITIONS
+    // ========================================================================
+    
+    // Transcription of gene A (repressed by protein B)
+    // Hill function: rate = tx_A * (Kd^n / (Kd^n + B^n)) + leakiness
+    J1: -> mRNA_A; tx_A * (Kd^n / (Kd^n + B^n)) + leakiness;
+    
+    // Transcription of gene B (repressed by protein A)
+    // Hill function: rate = tx_B * (Kd^n / (Kd^n + A^n)) + leakiness
+    J2: -> mRNA_B; tx_B * (Kd^n / (Kd^n + A^n)) + leakiness;
+    
+    // Translation reactions
+    J3: mRNA_A -> mRNA_A + A; tl_A * mRNA_A;
+    J4: mRNA_B -> mRNA_B + B; tl_B * mRNA_B;
+    
+    // mRNA degradation
+    J5: mRNA_A -> ; deg_mRNA * mRNA_A;
+    J6: mRNA_B -> ; deg_mRNA * mRNA_B;
+    
+    // Protein degradation
+    J7: A -> ; deg_protein * A;
+    J8: B -> ; deg_protein * B;
+
+end
